@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  client:
+    build: ./client
+    depends_on:
+      - server
+    container_name: client
+
+  server:
+    build: ./server
+    env_file:
+      - ./server/.env
+    container_name: server

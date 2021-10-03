@@ -1,0 +1,23 @@
+services:
+  client:
+    build:
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - '80:80'
+    env_file:
+      - ./client/.env
+    environment:
+      NODE_ENV: production
+      REACT_APP_API_URL: ${REACT_APP_API_URL}
+
+  server:
+    build:
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - '5001:5001'
+    env_file:
+      - ./server/production.env
+    environment:
+      NODE_ENV: production
+      HOST: http://localhost
+      PORT: 5001
